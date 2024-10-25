@@ -11072,7 +11072,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6dc4a191184dc4645b3c700007c8db7c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -11464,7 +11464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chipPool: {fileID: 998164515}
-  _chipSpeed: 7
+  _chipSpeed: 10
   _shotDelay: 0.4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

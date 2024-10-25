@@ -1,14 +1,20 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public sealed class PlayerShot : MonoBehaviour
 {
     [SerializeField] private ObjectPool _chipPool;
-    [SerializeField] private float _chipSpeed;
     [SerializeField] private float _shotDelay;
 
+    private Rigidbody2D _rigidBody;
     private Vector3 _mousePosition;
-    private Vector2 _direction;
+    private Vector3 _direction;
+
+    private void Awake()
+    {
+        _rigidBody = GetComponent<Rigidbody2D>();
+    }
 
     private IEnumerator Start()
     {
@@ -21,12 +27,8 @@ public sealed class PlayerShot : MonoBehaviour
 
     private void Shot()
     {
-        _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        _mousePosition.z = 0f;
-        _direction = (_mousePosition - transform.position).normalized;
-        GameObject chip = _chipPool.GetObjectFromPool();
-        chip.transform.position = transform.position;
-        Rigidbody2D rb = chip.GetComponent<Rigidbody2D>();
-        rb.velocity = _direction * _chipSpeed;
+        GameObject chipObj = _chipPool.GetObjectFromPool();
+        Chip chip = chipObj.GetComponent<Chip>();
+        StartCoroutine(chip.Run(transform));
     }
 }
