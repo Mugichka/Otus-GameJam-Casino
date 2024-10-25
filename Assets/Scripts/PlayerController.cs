@@ -15,7 +15,7 @@ public sealed class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        _direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        _direction = new Vector2(Input.GetAxisRaw(MyConst.Horizontal), Input.GetAxisRaw(MyConst.Vertical)).normalized;
     }
 
     private void FixedUpdate()

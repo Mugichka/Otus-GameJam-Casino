@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FortuneWheel : MonoBehaviour
+public sealed class FortuneWheel : MonoBehaviour
 {
     public float startSpeed = 1000f;
     public float deceleration = 5f;
