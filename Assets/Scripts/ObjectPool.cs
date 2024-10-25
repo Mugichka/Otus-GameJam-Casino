@@ -1,45 +1,48 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public sealed class ObjectPool : MonoBehaviour
+public sealed class ObjectPool<T> where T : Component
 {
-    [SerializeField] private GameObject _prefab;
-    [SerializeField] private int _poolSize = 10;
+    private T _prefab;
+    private int _poolSize;
 
-    private Queue<GameObject> objectPool;
+    private Queue<T> objectPool;
     private GameObject _root;
 
-    void Start()
+    public ObjectPool(T prefab, int poolSize)
     {
+        _prefab = prefab;
+        _poolSize = poolSize;
+
         _root = new GameObject($"{_prefab.name}PoolRoot");
-        objectPool = new Queue<GameObject>();
+        objectPool = new Queue<T>();
 
         for (int i = 0; i < _poolSize; i++)
         {
-            GameObject obj = Instantiate(_prefab, _root.transform);
-            obj.SetActive(false);
+            T obj = Object.Instantiate(_prefab, _root.transform);
+            obj.gameObject.SetActive(false);
             objectPool.Enqueue(obj);
         }
     }
 
-    public GameObject GetObjectFromPool()
+    public T GetObjectFromPool()
     {
         if (objectPool.Count > 0)
         {
-            GameObject obj = objectPool.Dequeue();
-            obj.SetActive(true);
+            T obj = objectPool.Dequeue();
+            obj.gameObject.SetActive(true);
             return obj;
         }
         else
         {
-            GameObject obj = Instantiate(_prefab, _root.transform);
+            T obj = Object.Instantiate(_prefab, _root.transform);
             return obj;
         }
     }
 
-    public void ReturnObjectToPool(GameObject obj)
+    public void ReturnObjectToPool(T obj)
     {
-        obj.SetActive(false);
+        obj.gameObject.SetActive(false);
         objectPool.Enqueue(obj);
     }
 }

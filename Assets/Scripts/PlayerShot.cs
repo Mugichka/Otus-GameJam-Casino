@@ -4,17 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public sealed class PlayerShot : MonoBehaviour
 {
-    [SerializeField] private ObjectPool _chipPool;
+    [SerializeField] private ObjectPoolManager _objectPoolManager;
     [SerializeField] private float _shotDelay;
-
-    private Rigidbody2D _rigidBody;
-    private Vector3 _mousePosition;
-    private Vector3 _direction;
-
-    private void Awake()
-    {
-        _rigidBody = GetComponent<Rigidbody2D>();
-    }
 
     private IEnumerator Start()
     {
@@ -27,8 +18,7 @@ public sealed class PlayerShot : MonoBehaviour
 
     private void Shot()
     {
-        GameObject chipObj = _chipPool.GetObjectFromPool();
-        Chip chip = chipObj.GetComponent<Chip>();
+        Chip chip = _objectPoolManager.ChipPool.GetObjectFromPool();
         StartCoroutine(chip.Run(transform));
     }
 }

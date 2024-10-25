@@ -5,12 +5,12 @@ public sealed class Enemy : MonoBehaviour
     [SerializeField] EnemyTrigger _enemyTrigger;
     [SerializeField] int _hP = 100;
 
-    private GameObject _enemyPool;
+    private ObjectPoolManager _objectPoolManager;
     private int _currentHP;
 
     private void Awake()
     {
-        _enemyPool = GameObject.FindWithTag(MyConst.EnemyPool);
+        _objectPoolManager = FindObjectOfType<ObjectPoolManager>();
         _currentHP = _hP;
     }
 
@@ -46,7 +46,7 @@ public sealed class Enemy : MonoBehaviour
 
     private void Die()
     {
-        _enemyPool.GetComponent<ObjectPool>().ReturnObjectToPool(gameObject);
+        _objectPoolManager.EnemyPool.ReturnObjectToPool(this);
         UpdateEnemy();
     }
 

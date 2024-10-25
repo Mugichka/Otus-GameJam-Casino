@@ -8,7 +8,7 @@ public sealed class Chip : MonoBehaviour
     [SerializeField] private float _chipSpeed;
     [SerializeField] private int _damage;
 
-    private ObjectPool _chipPool;
+    private ObjectPoolManager _objectPoolManager;
     private ChipTrigger _chipTrigger;
     private Rigidbody2D _rigidBody;
 
@@ -18,7 +18,7 @@ public sealed class Chip : MonoBehaviour
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _chipTrigger = GetComponent<ChipTrigger>();
-        _chipPool = GameObject.FindWithTag(MyConst.ChipPool).GetComponent<ObjectPool>();
+        _objectPoolManager = FindObjectOfType<ObjectPoolManager>();
     }
 
     private void OnEnable()
@@ -34,7 +34,7 @@ public sealed class Chip : MonoBehaviour
 
     private void Die()
     {
-        _chipPool.ReturnObjectToPool(gameObject);
+        _objectPoolManager.ChipPool.ReturnObjectToPool(this);
     }
 
     public IEnumerator Run(Transform playerTransform)

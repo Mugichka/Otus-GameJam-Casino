@@ -3,7 +3,7 @@ using System.Collections;
 
 public sealed class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemyPool;
+    [SerializeField] private ObjectPoolManager _objectPoolManager;
     [SerializeField] private float _spawnDelay;
 
     private Vector3 _screenBottomLeft;
@@ -58,7 +58,7 @@ public sealed class EnemySpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject enemy = _enemyPool.GetComponent<ObjectPool>().GetObjectFromPool();
+        Enemy enemy = _objectPoolManager.EnemyPool.GetObjectFromPool();
         enemy.transform.position = spawnPosition;
     }
 }
