@@ -13445,7 +13445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chipPrefab: {fileID: 8442607051430623645, guid: 794a2bf90565f2a42b1e2937602f4dab, type: 3}
-  _chipPoolSize: 10
+  _chipPoolSize: 30
   _enemyPrefab: {fileID: -2438303093909718518, guid: 83f199d9dc576d142b31cf2bc8dcb08c, type: 3}
   _enemyPoolSize: 50
 --- !u!1 &1965958857
@@ -13769,6 +13769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectPoolManager: {fileID: 1935481628}
   _shotDelay: 0.4
+  _baseUpgrade: {fileID: 11400000, guid: 5331266276ce87d42b42409b6860fc9c, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -164,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifeTime: 2
   _chipSpeed: 10
-  _damage: 50
+  _damage: 100
 --- !u!114 &8883959835261761696
 MonoBehaviour:
   m_ObjectHideFlags: 0
