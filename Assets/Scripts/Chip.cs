@@ -24,7 +24,6 @@ public sealed class Chip : MonoBehaviour
     private void OnEnable()
     {
         _chipTrigger.ChipTriggered += Die;
-        //StartCoroutine(Run());
     }
 
     private void OnDisable()

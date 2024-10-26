@@ -1,15 +1,24 @@
 using UnityEngine;
+using System;
 
 public sealed class FortuneWheel : MonoBehaviour
 {
-    public float startSpeed = 1000f;
-    public float deceleration = 5f;
-    private float currentSpeed;
-    private bool isSpinning = false;
+    public event Action CardsFell;
 
-    private void Start()
+    [SerializeField] private SpinButton _spinButton;
+    [SerializeField] private float startSpeed = 1000f;
+    [SerializeField] private float deceleration = 200f;
+    [SerializeField] private float currentSpeed;
+    [SerializeField] private bool isSpinning = false;
+
+    private void OnEnable()
     {
-        StartSpin();
+        _spinButton.spinAllowed += StartSpin;
+    }
+
+    private void OnDisable()
+    {
+        _spinButton.spinAllowed -= StartSpin;
     }
 
     void Update()
@@ -40,6 +49,7 @@ public sealed class FortuneWheel : MonoBehaviour
     private void DetermineResult()
     {
         float currentAngle = transform.eulerAngles.z;
-        Debug.Log("Остановилось на угле: " + currentAngle);
+
+        CardsFell?.Invoke();
     }
 }
