@@ -3,54 +3,56 @@ using UnityEngine;
 
 public sealed class CardSelector : MonoBehaviour
 {
-    [SerializeField] private List<UpgradeData> _allUpgrades;
+    [SerializeField] private List<UpgradeData> allUpgrades;
 
-    private int _currentMinLevel = 1;
-    private int _countCards = 3; 
+    private Dictionary<System.Type, int> upgradeLevels = new Dictionary<System.Type, int>();
 
-    private List<UpgradeData> GetUpgrades()
+    private void Start()
     {
-        if (_allUpgrades.Count < _countCards)
+        // Инициализация уровней для каждого типа апгрейда
+        foreach (var upgrade in allUpgrades)
         {
-            _countCards = _allUpgrades.Count;
+            if (!upgradeLevels.ContainsKey(upgrade.GetType()))
+            {
+                upgradeLevels[upgrade.GetType()] = 1;
+            }
         }
+    }
 
-        List<UpgradeData> selectedUpgrades = new List<UpgradeData>();
+    public List<UpgradeData> GetRandomUpgrades(int count)
+    {
+        List<UpgradeData> availableUpgrades = new List<UpgradeData>();
 
-        while (selectedUpgrades.Count < _countCards && _allUpgrades.Count > 0)
+        // Находим все доступные апгрейды для текущих уровней
+        foreach (var upgrade in allUpgrades)
         {
-            List<UpgradeData> upgradesOfCurrentLevel = new List<UpgradeData>();
-
-            foreach (UpgradeData upgrade in _allUpgrades)
+            var upgradeType = upgrade.GetType();
+            if (upgradeLevels.ContainsKey(upgradeType) && upgrade.UpgradeLevel <= upgradeLevels[upgradeType])
             {
-                if (upgrade.Level == _currentMinLevel)
-                {
-                    upgradesOfCurrentLevel.Add(upgrade);
-                }
-            }
-
-            if (upgradesOfCurrentLevel.Count >= _countCards)
-            {
-                for (int i = 0; i < _countCards; i++)
-                {
-                    int index = Random.Range(0, upgradesOfCurrentLevel.Count);
-                    selectedUpgrades.Add(upgradesOfCurrentLevel[index]);
-                    upgradesOfCurrentLevel.RemoveAt(index);
-                }
-            }
-            else
-            {
-                selectedUpgrades.AddRange(upgradesOfCurrentLevel);
-                _currentMinLevel++;
-
-                if (selectedUpgrades.Count >= _countCards)
-                {
-                    selectedUpgrades = selectedUpgrades.GetRange(0, _countCards);
-                }
+                availableUpgrades.Add(upgrade);
             }
         }
 
-        _currentMinLevel = 1;
-        return selectedUpgrades;
+        // Случайный выбор из доступных апгрейдов
+        List<UpgradeData> randomUpgrades = new List<UpgradeData>();
+        for (int i = 0; i < count && availableUpgrades.Count > 0; i++)
+        {
+            int randomIndex = Random.Range(0, availableUpgrades.Count);
+            randomUpgrades.Add(availableUpgrades[randomIndex]);
+            availableUpgrades.RemoveAt(randomIndex); // Удаляем выбранный элемент, чтобы избежать дубликатов
+        }
+
+        return randomUpgrades;
+    }
+
+    public void UpgradeSelected(UpgradeData selectedUpgrade)
+    {
+        System.Type upgradeType = selectedUpgrade.GetType(); // НЕ ЗАБЫТЬ УДАЛИТЬ ИСПОЛЬЗОВАННУЮ КАРТУ
+
+        // Повышаем уровень прокачки для выбранного типа
+        if (upgradeLevels.ContainsKey(upgradeType))
+        {
+            upgradeLevels[upgradeType] = selectedUpgrade.UpgradeLevel + 1;
+        }
     }
 }

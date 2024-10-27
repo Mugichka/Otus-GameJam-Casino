@@ -15,5 +15,6 @@ MonoBehaviour:
   _upgradeName: "\u0415\u0449\u0451 \u0431\u043E\u043B\u044C\u0448\u0435 \u0434\u044B\u043C\u0430"
   _description: "\u0414\u044B\u043C\u0430 \u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0441\u044F
     \u0435\u0449\u0451 \u0431\u043E\u043B\u044C\u0448\u0435"
+  _upgradeLevel: 0
   _auraRadius: 2.1
   _smokeScale: {x: 1.4, y: 1.4}
