@@ -6,14 +6,18 @@ public sealed class PlayerShot : MonoBehaviour
 {
     [SerializeField] private ObjectPoolManager _objectPoolManager;
     [SerializeField] private float _shotDelay;
+
     [SerializeField] private ChipUpgrade _baseUpgrade;
 
     private ChipUpgrade _currentUpgrade;
 
-    private IEnumerator Start()
+    private void Awake()
     {
         _currentUpgrade = _baseUpgrade;
+    }
 
+    private IEnumerator Start()
+    {
         while(true)
         {
             yield return new WaitForSeconds(_shotDelay);
@@ -28,7 +32,12 @@ public sealed class PlayerShot : MonoBehaviour
         {
             float angleOffset = (i - (_currentUpgrade.ChipCount - 1) / 2f) * _currentUpgrade.AngleBetweenChips;
             Chip chip = _objectPoolManager.ChipPool.GetObjectFromPool();
-            StartCoroutine(chip.Run(transform, angleOffset));
+            chip.Run(transform, angleOffset);
         }
+    }
+
+    public void ApplyChipShootingUpgrade(ChipUpgrade newUpgrade)
+    {
+        _currentUpgrade = newUpgrade;
     }
 }

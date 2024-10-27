@@ -26,7 +26,7 @@ public sealed class Enemy : MonoBehaviour
 
     private bool _isDead = false;
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         if (_isDead == true)
         {

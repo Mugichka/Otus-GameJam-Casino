@@ -36,16 +36,20 @@ public sealed class Chip : MonoBehaviour
         _objectPoolManager.ChipPool.ReturnObjectToPool(this);
     }
 
-    public IEnumerator Run(Transform playerTransform, float angleOffset)
+    public void Run(Transform playerTransform, float angleOffset)
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0f;
         Vector3 direction = (mousePosition - playerTransform.position).normalized;
         Vector3 rotatedDirection = Quaternion.Euler(0, 0, angleOffset) * direction;
         transform.position = playerTransform.position;
-        Vector3 playerVelocityAlongChipDirection = Vector3.Project(_rigidBody.velocity, direction);
-        _rigidBody.velocity = rotatedDirection * _chipSpeed + playerVelocityAlongChipDirection;
+        _rigidBody.velocity = rotatedDirection * _chipSpeed;
 
+        StartCoroutine(RunLifetime());
+    }
+
+    private IEnumerator RunLifetime()
+    {
         yield return new WaitForSeconds(_lifeTime);
         Die();
     }
