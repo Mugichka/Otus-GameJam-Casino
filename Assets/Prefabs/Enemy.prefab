@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyTrigger: {fileID: -1858963848475982968}
+  _damage: 50
   _hP: 100
 --- !u!114 &1980552741243262198
 MonoBehaviour:

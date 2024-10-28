@@ -2,11 +2,14 @@ using UnityEngine;
 
 public sealed class Enemy : MonoBehaviour
 {
-    [SerializeField] EnemyTrigger _enemyTrigger;
-    [SerializeField] int _hP = 100;
+    [SerializeField] private EnemyTrigger _enemyTrigger;
+    [SerializeField] private int _damage;
+    [SerializeField] private int _hP = 100;
 
     private ObjectPoolManager _objectPoolManager;
     private int _currentHP;
+
+    public int Damage => _damage;
 
     private void Awake()
     {
