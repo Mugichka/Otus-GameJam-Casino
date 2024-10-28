@@ -13807,6 +13807,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07d9cc1a1c106bf47b3d716852079cdf, type: 2}
   - {fileID: 11400000, guid: 61884eca505ea9f46a8ca0569d386fc6, type: 2}
   - {fileID: 11400000, guid: d0fbbc6856934ff4fb902db164de720f, type: 2}
+  - {fileID: 11400000, guid: 62f297b7ed4b3804bb6206cbe5fcd8c0, type: 2}
+  - {fileID: 11400000, guid: 3179179a556766e4a87d2256a99dfc0f, type: 2}
+  - {fileID: 11400000, guid: 4b7297968d14e5a438a4e8c29423db47, type: 2}
 --- !u!1 &1620381853
 GameObject:
   m_ObjectHideFlags: 0
@@ -14496,15 +14499,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070527193}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fc60229b9f59074fb07f7b4fe145c55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fireAnimator: {fileID: 2617902376423322072, guid: b64fc996593eb234a887b2e024ae8a76, type: 3}
   _objectPoolManager: {fileID: 1935481628}
   _fireDamage: 100
   _fireCheckInterval: 2
-  _spawnRadius: 4
+  _spawnRadius: 3
   _damageDelay: 0.3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
