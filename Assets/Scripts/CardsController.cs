@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using TMPro;
-//using DG.Tweening;
+using System.Collections.Generic;
 
 public sealed class CardsController : MonoBehaviour
 {
@@ -36,10 +36,11 @@ public sealed class CardsController : MonoBehaviour
     [SerializeField] private float _fromFlipToFlipDuration;
     [SerializeField] private float _closeCardsDuration;
     [SerializeField] private FortuneWheel _fortuneWheel;
-    [SerializeField] private UpgradeData[] _upgradeData;
+    [SerializeField] private CardSelector _cardSelector;
 
+    private List<UpgradeData> _selectedCards;
     private Card[] _cards;
-    private int _countOfCards = 3;
+    private readonly int _countOfCards = 3;
 
     private void Awake()
     {
@@ -48,18 +49,21 @@ public sealed class CardsController : MonoBehaviour
         _cards[0] = new Card(
             new CardFliper(_groupFrontLeftCard, _groupBackLeftCard, _flipDuration, "FlipTweenLeft"),
             new CardThrower(_transformLeftCard, _throwDuration, "ThrowTweenLeft"),
+            new CardReturner(_transformLeftCard),
             new CardDescriptionChanger(_nameLeftCard, _descriptionLeftCard, _player)
             );
 
         _cards[1] = new Card(
             new CardFliper(_groupFrontMiddleCard, _groupBackMiddleCard, _flipDuration, "FlipTweenMiddle"),
             new CardThrower(_transformMiddleCard, _throwDuration, "ThrowTweenMiddle"),
+            new CardReturner(_transformMiddleCard),
             new CardDescriptionChanger(_nameMiddleCard, _descriptionMiddleCard, _player)
             );
 
         _cards[2] = new Card(
             new CardFliper(_groupFrontRightCard, _groupBackRightCard, _flipDuration, "FlipTweenRight"),
             new CardThrower(_transformRightCard, _throwDuration, "ThrowTweenRight"),
+            new CardReturner(_transformRightCard),
             new CardDescriptionChanger(_nameRightCard, _descriptionRightCard, _player)
             );
     }
@@ -82,11 +86,17 @@ public sealed class CardsController : MonoBehaviour
 
     private IEnumerator ShowCards()
     {
+        _selectedCards = _cardSelector.GetRandomUpgrades();
+
         _cardsContainer.SetActive(true);
 
-        for (int i = 0; i < _countOfCards; i++)
+        for (int i = 0; i < _selectedCards.Count; i++)
         {
-            _cards[i].UpdateData(_upgradeData[i]);
+            if (_selectedCards[i] != null)
+            {
+                _cards[i].UpdateData(_selectedCards[i]);
+            }
+
             _cards[i].Throw();
         }
 
@@ -109,6 +119,11 @@ public sealed class CardsController : MonoBehaviour
         yield return new WaitForSeconds(_closeCardsDuration);
 
         _cardsContainer.SetActive(false);
+
+        for (int i = 0; i < _countOfCards; i++)
+        {
+            _cards[i].Return();
+        }
     }
 
     void Run()
@@ -119,18 +134,21 @@ public sealed class CardsController : MonoBehaviour
     private void OnLeftCardButtonClick()
     {
         StartCoroutine(CloseCards());
-        _upgradeData[0].ApplyUpgrade(_player);
+        _selectedCards[0].ApplyUpgrade(_player);
+        _cardSelector.UpgradeSelected(_selectedCards[0]);
     }
 
     private void OnMiddleCardButtonClick()
     {
         StartCoroutine(CloseCards());
-        _upgradeData[1].ApplyUpgrade(_player);
+        _selectedCards[1].ApplyUpgrade(_player);
+        _cardSelector.UpgradeSelected(_selectedCards[1]);
     }
 
     private void OnRightCardButtonClick()
     {
         StartCoroutine(CloseCards());
-        _upgradeData[2].ApplyUpgrade(_player);
+        _selectedCards[2].ApplyUpgrade(_player);
+        _cardSelector.UpgradeSelected(_selectedCards[2]);
     }
 }

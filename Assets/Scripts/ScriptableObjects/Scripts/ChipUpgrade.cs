@@ -14,6 +14,11 @@ public class ChipUpgrade : UpgradeData
         PlayerShot shooter = target.GetComponent<PlayerShot>();
         if (shooter != null)
         {
+            if (shooter.enabled == false)
+            {
+                shooter.enabled = true;
+            }
+
             shooter.ApplyChipShootingUpgrade(this);
         }
     }
