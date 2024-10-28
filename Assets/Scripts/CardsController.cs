@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections;
+using System;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
 public sealed class CardsController : MonoBehaviour
 {
+    //public event Action CardSelected;
+
     [Header("LeftCard")]
     [SerializeField] private CanvasGroup _groupFrontLeftCard;
     [SerializeField] private CanvasGroup _groupBackLeftCard;
@@ -139,6 +142,7 @@ public sealed class CardsController : MonoBehaviour
         StartCoroutine(CloseCards());
         _selectedCards[0].ApplyUpgrade(_player);
         _cardSelector.UpgradeSelected(_selectedCards[0]);
+        //CardSelected?.Invoke();
     }
 
     private void OnMiddleCardButtonClick()
@@ -146,6 +150,7 @@ public sealed class CardsController : MonoBehaviour
         StartCoroutine(CloseCards());
         _selectedCards[1].ApplyUpgrade(_player);
         _cardSelector.UpgradeSelected(_selectedCards[1]);
+        //CardSelected?.Invoke();
     }
 
     private void OnRightCardButtonClick()
@@ -153,5 +158,6 @@ public sealed class CardsController : MonoBehaviour
         StartCoroutine(CloseCards());
         _selectedCards[2].ApplyUpgrade(_player);
         _cardSelector.UpgradeSelected(_selectedCards[2]);
+        //CardSelected?.Invoke();
     }
 }
