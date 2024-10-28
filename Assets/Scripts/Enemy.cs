@@ -5,10 +5,12 @@ public sealed class Enemy : MonoBehaviour
     [SerializeField] private EnemyTrigger _enemyTrigger;
     [SerializeField] private int _damage;
     [SerializeField] private int _hP = 100;
+    [SerializeField] private EnemyController _controller;
 
     private ObjectPoolManager _objectPoolManager;
     private int _currentHP;
 
+    public EnemyController Controller => _controller;
     public int Damage => _damage;
 
     private void Awake()
