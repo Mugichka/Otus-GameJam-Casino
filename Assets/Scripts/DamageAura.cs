@@ -9,7 +9,7 @@ public class DamageAura : MonoBehaviour
     [SerializeField] private float _auraCheckInterval;
 
     private AuraUpgrade _currentUpgrade;
-    private float _damageDelay = 0.3f;
+    private readonly float _damageDelay = 0.3f;
     private Collider2D[] _hitColliders = new Collider2D[128];
 
     private void Start()
@@ -49,11 +49,4 @@ public class DamageAura : MonoBehaviour
         _currentUpgrade = newUpgrade;
         _smokeTransform.localScale = newUpgrade.SmokeScale;
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    // Для визуализации радиуса ауры в редакторе
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, 2.1f);
-    //}
 }

@@ -7,14 +7,7 @@ public sealed class PlayerShot : MonoBehaviour
     [SerializeField] private ObjectPoolManager _objectPoolManager;
     [SerializeField] private float _shotDelay;
 
-    [SerializeField] private ChipUpgrade _baseUpgrade;
-
     private ChipUpgrade _currentUpgrade;
-
-    private void Awake()
-    {
-        _currentUpgrade = _baseUpgrade;
-    }
 
     private IEnumerator Start()
     {
