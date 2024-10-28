@@ -13,6 +13,7 @@ public sealed class CardsController : MonoBehaviour
     [SerializeField] private Button _buttonLeftCard;
     [SerializeField] private TextMeshProUGUI _nameLeftCard;
     [SerializeField] private TextMeshProUGUI _descriptionLeftCard;
+    [SerializeField] private Image _imageLeftCard;
     [Header("MiddleCard")]
     [SerializeField] private CanvasGroup _groupFrontMiddleCard;
     [SerializeField] private CanvasGroup _groupBackMiddleCard;
@@ -20,6 +21,7 @@ public sealed class CardsController : MonoBehaviour
     [SerializeField] private Button _buttonMiddleCard;
     [SerializeField] private TextMeshProUGUI _nameMiddleCard;
     [SerializeField] private TextMeshProUGUI _descriptionMiddleCard;
+    [SerializeField] private Image _imageMiddleCard;
     [Header("RightCard")]
     [SerializeField] private CanvasGroup _groupFrontRightCard;
     [SerializeField] private CanvasGroup _groupBackRightCard;
@@ -27,6 +29,7 @@ public sealed class CardsController : MonoBehaviour
     [SerializeField] private Button _buttonRightCard;
     [SerializeField] private TextMeshProUGUI _nameRightCard;
     [SerializeField] private TextMeshProUGUI _descriptionRightCard;
+    [SerializeField] private Image _imageRightCard;
     [Space]
     [SerializeField] private float _flipDuration;
     [SerializeField] private float _throwDuration;
@@ -50,21 +53,21 @@ public sealed class CardsController : MonoBehaviour
             new CardFliper(_groupFrontLeftCard, _groupBackLeftCard, _flipDuration, "FlipTweenLeft"),
             new CardThrower(_transformLeftCard, _throwDuration, "ThrowTweenLeft"),
             new CardReturner(_transformLeftCard),
-            new CardDescriptionChanger(_nameLeftCard, _descriptionLeftCard, _player)
+            new CardDescriptionChanger(_nameLeftCard, _descriptionLeftCard, _imageLeftCard, _player)
             );
 
         _cards[1] = new Card(
             new CardFliper(_groupFrontMiddleCard, _groupBackMiddleCard, _flipDuration, "FlipTweenMiddle"),
             new CardThrower(_transformMiddleCard, _throwDuration, "ThrowTweenMiddle"),
             new CardReturner(_transformMiddleCard),
-            new CardDescriptionChanger(_nameMiddleCard, _descriptionMiddleCard, _player)
+            new CardDescriptionChanger(_nameMiddleCard, _descriptionMiddleCard, _imageMiddleCard, _player)
             );
 
         _cards[2] = new Card(
             new CardFliper(_groupFrontRightCard, _groupBackRightCard, _flipDuration, "FlipTweenRight"),
             new CardThrower(_transformRightCard, _throwDuration, "ThrowTweenRight"),
             new CardReturner(_transformRightCard),
-            new CardDescriptionChanger(_nameRightCard, _descriptionRightCard, _player)
+            new CardDescriptionChanger(_nameRightCard, _descriptionRightCard, _imageRightCard, _player)
             );
     }
 

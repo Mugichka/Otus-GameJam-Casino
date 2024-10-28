@@ -17,5 +17,6 @@ MonoBehaviour:
     \u0430\u0434\u0441\u043A\u043E\u0435 \u043F\u043B\u0430\u043C\u044F \u0432\u043E\u043A\u0440\u0443\u0433
     \u0438\u0433\u0440\u043E\u043A\u0430 \u0441 \u0431\u043E\u043B\u044C\u0448\u0438\u043C
     \u0443\u0440\u043E\u043D\u043E\u043C"
+  _sprite: {fileID: 21300000, guid: 901254aafd659a8488328c3b5e0aab20, type: 3}
   _upgradeLevel: 1
   _fireCount: 1

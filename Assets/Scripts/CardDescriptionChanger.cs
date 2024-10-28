@@ -1,16 +1,18 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class CardDescriptionChanger
 {
     private TextMeshProUGUI _name;
     private TextMeshProUGUI _description;
-    private Sprite _sprite;
+    private Image _image;
 
-    public CardDescriptionChanger(TextMeshProUGUI name, TextMeshProUGUI description, GameObject player)
+    public CardDescriptionChanger(TextMeshProUGUI name, TextMeshProUGUI description, Image image ,GameObject player)
     {
         _name = name;
         _description = description;
+        _image = image;
     }
 
     public void SetDataFromUpgrade(UpgradeData upgradeData)
@@ -19,8 +21,7 @@ public class CardDescriptionChanger
         {
             _name.text = upgradeData.UpgradeName;
             _description.text = upgradeData.Description;
-            // Можно также установить спрайт, если есть
-            // _sprite = upgradeData.sprite; // Если у вас есть спрайт в UpgradeData
+            _image.sprite = upgradeData.Sprite;
         }
     }
 }
