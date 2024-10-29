@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "FireUpgrade", menuName = "Upgrades/FireUpgrade"),]
+[CreateAssetMenu(fileName = "FireUpgrade", menuName = "Upgrades/FireUpgrade")]
 public class FireUpgrade : UpgradeData
 {
     [SerializeField] private int _fireCount;

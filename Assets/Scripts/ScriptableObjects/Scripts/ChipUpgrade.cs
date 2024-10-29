@@ -1,11 +1,10 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ChipUpgrade", menuName = "Upgrades/ChipUpgrade"),]
+[CreateAssetMenu(fileName = "ChipUpgrade", menuName = "Upgrades/ChipUpgrade")]
 public class ChipUpgrade : UpgradeData
 {
     [SerializeField] private int _chipCount;
     [SerializeField] private float _angleBetweenChips;
-    
 
     public int ChipCount => _chipCount;
     public float AngleBetweenChips => _angleBetweenChips;
