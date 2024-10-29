@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public sealed class EnemyController : MonoBehaviour
 {
+    public bool IsWalking = true;
+
     [SerializeField] private float _speed;
 
     private PlayerController _target;
@@ -17,11 +19,17 @@ public sealed class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        _direction = (_target.transform.position - transform.position).normalized;
+        if (IsWalking == true)
+        {
+            _direction = (_target.transform.position - transform.position).normalized;
+        }
     }
 
     private void FixedUpdate()
     {
-        _rigidBody.velocity = _direction * _speed;
+        if (IsWalking == true)
+        {
+            _rigidBody.velocity = _direction * _speed;
+        }
     }
 }

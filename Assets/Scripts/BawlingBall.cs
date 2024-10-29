@@ -7,7 +7,6 @@ public sealed class BawlingBall : MonoBehaviour
     [SerializeField] private float _lifeTime;
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _ballSpeed;
-    [SerializeField] private float _enemyDropedTime;
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private BawlingBallTrigger _bawlingBallTrigger;
 
@@ -40,18 +39,7 @@ public sealed class BawlingBall : MonoBehaviour
     private void DropEnemy(Enemy enemy)
     {
         enemy.TakeDamage(_damage);
-        EnemyController enemyController = enemy.Controller;
-        enemyController.enabled = false;
-        enemy.transform.rotation = Quaternion.Euler(0, 0, 90);
-        StartCoroutine(RaiseEnemy(enemy));
-    }
-
-    private IEnumerator RaiseEnemy(Enemy enemy)
-    {
-        yield return new WaitForSeconds(_enemyDropedTime);
-
-        enemy.transform.rotation = Quaternion.Euler(0, 0, 0);
-        enemy.Controller.enabled = true;
+        enemy.DisableWalking();
     }
 
     private IEnumerator RunLifetime()

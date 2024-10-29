@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1980552741243262198}
   - component: {fileID: -1858963848475982968}
   - component: {fileID: 7383298183241526969}
+  - component: {fileID: 2678906131191163681}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -101,7 +102,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 3
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -129,8 +130,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyTrigger: {fileID: -1858963848475982968}
+  _animator: {fileID: 2678906131191163681}
   _damage: 50
   _hP: 100
+  _dropedTime: 1
+  _colorChangeDuration: 0.4
+  _damageColor: {r: 1, g: 0, b: 0, a: 1}
   _controller: {fileID: 1980552741243262198}
 --- !u!114 &1980552741243262198
 MonoBehaviour:
@@ -144,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02f4e3a227e4b944daef2d3a487bdfe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsWalking: 1
   _speed: 1.5
 --- !u!114 &-1858963848475982968
 MonoBehaviour:
@@ -202,3 +208,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3881607, y: 1.7664742}
   m_EdgeRadius: 0
+--- !u!95 &2678906131191163681
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4863611629883765804}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fc6d1d0c8c3375b469397e237d7190f5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

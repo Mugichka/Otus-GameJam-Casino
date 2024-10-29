@@ -1,21 +1,28 @@
 using UnityEngine;
+using System.Collections;
 
 public sealed class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyTrigger _enemyTrigger;
+    [SerializeField] private Animator _animator;
     [SerializeField] private int _damage;
     [SerializeField] private int _hP = 100;
+    [SerializeField] private float _dropedTime;
     [SerializeField] private EnemyController _controller;
 
+    private SpriteRenderer _spriteRenderer;
     private ObjectPoolManager _objectPoolManager;
+    private Color _originalColor;
     private int _currentHP;
-
-    public EnemyController Controller => _controller;
+    private bool _isDead = false;
+    
     public int Damage => _damage;
 
     private void Awake()
     {
         _objectPoolManager = FindObjectOfType<ObjectPoolManager>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _originalColor = _spriteRenderer.color;
         _currentHP = _hP;
     }
 
@@ -28,8 +35,6 @@ public sealed class Enemy : MonoBehaviour
     {
         _enemyTrigger.EnemyTriggered -= TakeDamage;
     }
-
-    private bool _isDead = false;
 
     public void TakeDamage(int damage)
     {
@@ -46,7 +51,21 @@ public sealed class Enemy : MonoBehaviour
         else
         {
             _currentHP -= damage;
+            _animator.SetTrigger("TakeDamage");
         }
+    }
+
+    public void DisableWalking()
+    {
+        _controller.IsWalking = false;
+        transform.rotation = Quaternion.Euler(0, 0, 90);
+        Invoke(nameof(EnableWalking), _dropedTime);
+    }
+
+    private void EnableWalking()
+    {
+        _controller.IsWalking = true;
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     private void Die()
@@ -59,5 +78,6 @@ public sealed class Enemy : MonoBehaviour
     {
         _currentHP = _hP;
         _isDead = false;
+        _spriteRenderer.color = _originalColor;
     }
 }

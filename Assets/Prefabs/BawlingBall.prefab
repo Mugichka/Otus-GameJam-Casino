@@ -114,9 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 50
   _lifeTime: 2
-  _rotationSpeed: 200
+  _rotationSpeed: 400
   _ballSpeed: 4
-  _enemyDropedTime: 1.5
   _rigidbody: {fileID: 7934426610037158299}
   _bawlingBallTrigger: {fileID: 2574364592063186855}
 --- !u!58 &7836240101581904811
@@ -162,11 +161,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8542876190935602011}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0

@@ -5,7 +5,7 @@ public sealed class BowlingAttack : MonoBehaviour
 {
     [SerializeField] private ObjectPoolManager _objectPoolManager;
     [SerializeField] private float _shotDelay;
-    [SerializeField] private Rigidbody2D _playerRigidbody;
+    [SerializeField] private PlayerController _controller;
 
     private ChipUpgrade _currentUpgrade;
 
@@ -20,8 +20,7 @@ public sealed class BowlingAttack : MonoBehaviour
 
     private void Shot()
     {
-        Vector2 playerDirection = _playerRigidbody.velocity.normalized;
         BawlingBall bawlingBall = _objectPoolManager.BawlingBallPool.GetObjectFromPool();
-        bawlingBall.Run(transform, playerDirection);
+        bawlingBall.Run(transform, _controller.LastDirection);
     }
 }

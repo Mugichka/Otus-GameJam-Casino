@@ -7,6 +7,9 @@ public sealed class PlayerController : MonoBehaviour
  
     private Rigidbody2D _rigidBody;
     private Vector2 _direction;
+    private Vector2 _lastDirection = Vector2.one.normalized;
+
+    public Vector2 LastDirection => _lastDirection;
 
     private void Awake()
     {
@@ -16,6 +19,11 @@ public sealed class PlayerController : MonoBehaviour
     private void Update()
     {
         _direction = new Vector2(Input.GetAxisRaw(MyConst.Horizontal), Input.GetAxisRaw(MyConst.Vertical)).normalized;
+
+        if (_direction != Vector2.zero)
+        {
+            _lastDirection = _direction;
+        }
     }
 
     private void FixedUpdate()
