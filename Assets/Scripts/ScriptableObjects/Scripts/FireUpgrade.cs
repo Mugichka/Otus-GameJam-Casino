@@ -7,6 +7,7 @@ public class FireUpgrade : UpgradeData
 
     public int FireCount => _fireCount;
 
+
     public override void ApplyUpgrade(GameObject target)
     {
         PillarOfFire shooter = target.GetComponent<PillarOfFire>();
@@ -18,6 +19,20 @@ public class FireUpgrade : UpgradeData
             }
 
             shooter.ApplyChipShootingUpgrade(this);
+            // Apply any active buffs to all spells, including newly enabled ones
+            foreach (var fire in FindObjectsOfType<Fire>(true))
+            {
+                if (!fire.buffApplied)
+                    PlayerBuffs.Instance.ReapplyBuffsToAllSpells(fire.gameObject);
+                fire.buffApplied = true;
+            }
+
+            if (!shooter.buffApplied)
+            {
+                PlayerBuffs.Instance.ReapplyBuffsToAllSpells(shooter.gameObject);
+                shooter.buffApplied = true;
+            }
+
         }
     }
 }

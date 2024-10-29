@@ -6,19 +6,42 @@ public class ArtifactSO : ScriptableObject
 {
     public string artifactName;
     public string description;
-    public float buffAmount;
+    public float speedBuffAmount;
+    public float damageBuffAmount;
+    public float delayBuffAmount;
     public float duration;
+    public List<string> artifactType;
     public List<string> targetSpellNames; // Leave empty to target all spells
+    
 
     // Apply the buff to specific spells or all if targetSpellNames is empty
     public void ApplyBuffToSpells(GameObject player)
     {
         if (targetSpellNames == null || targetSpellNames.Count == 0)
         {
-            // Apply to all spells if no specific targets are set
-            foreach (IBuffable spell in player.GetComponents<IBuffable>())
+            if (artifactType.Contains("Speed"))
             {
-                spell.ApplyBuff(buffAmount);
+                // Apply to all spells if no specific targets are set
+                foreach (ISpeedBuffable spell in player.GetComponents<ISpeedBuffable>())
+                {
+                    spell.ApplySpeedBuff(speedBuffAmount);
+                }
+            }
+            if (artifactType.Contains("Damage"))
+            {
+                // Apply to all spells if no specific targets are set
+                foreach (IDamageBuffable spell in player.GetComponents<IDamageBuffable>())
+                {
+                    spell.ApplyDamageBuff(damageBuffAmount);
+                }
+            }
+            if (artifactType.Contains("Delay"))
+            {
+                // Apply to all spells if no specific targets are set
+                foreach (IDelayBuffable spell in player.GetComponents<IDelayBuffable>())
+                {
+                    spell.ApplyDelayBuff(delayBuffAmount);
+                }
             }
         }
         else
@@ -27,11 +50,26 @@ public class ArtifactSO : ScriptableObject
             foreach (string spellName in targetSpellNames)
             {
                 var spellScript = player.GetComponent(spellName) as MonoBehaviour;
-                if (spellScript != null && spellScript is IBuffable buffableSpell)
+
+                if(artifactType.Contains("Speed"))
+                if (spellScript != null && spellScript is ISpeedBuffable speedBuffableSpell)
                 {
-                    buffableSpell.ApplyBuff(buffAmount);
+                    speedBuffableSpell.ApplySpeedBuff(speedBuffAmount);
+                }
+
+                if(artifactType.Contains("Damage"))
+                if (spellScript != null && spellScript is IDamageBuffable damageBuffableSpell)
+                {
+                    damageBuffableSpell.ApplyDamageBuff(damageBuffAmount);
+                }
+
+                if(artifactType.Contains("Delay"))
+                if (spellScript != null && spellScript is IDelayBuffable delayBuffableSpell)
+                {
+                    delayBuffableSpell.ApplyDelayBuff(delayBuffAmount);
                 }
             }
+            
         }
     }
 }

@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-public class DamageAura : MonoBehaviour
+public class DamageAura : MonoBehaviour,IDamageBuffable,IDelayBuffable
 {
     [SerializeField] private Animator _smokeAnimator;
     [SerializeField] private Transform _smokeTransform;
     [SerializeField] private int _auraDamage;
     [SerializeField] private float _auraCheckInterval;
+
+    public bool buffApplied = false;
 
     private AuraUpgrade _currentUpgrade;
     private readonly float _damageDelay = 0.3f;
@@ -48,5 +50,15 @@ public class DamageAura : MonoBehaviour
     {
         _currentUpgrade = newUpgrade;
         _smokeTransform.localScale = newUpgrade.SmokeScale;
+    }
+
+    public void ApplyDelayBuff(float buffAmount)
+    {
+        _auraCheckInterval *= buffAmount;
+    }
+
+    public void ApplyDamageBuff(float buffAmount)
+    {
+        _auraDamage += (int)buffAmount;
     }
 }

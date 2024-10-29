@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public sealed class Fire : MonoBehaviour
+public sealed class Fire : MonoBehaviour, IDamageBuffable, IDelayBuffable
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private int _damage;
     [SerializeField] private float _damageDelay;
+    public bool buffApplied = false;
+
 
     private float _animationTime = 0.833f;
     private ObjectPoolManager _objectPoolManager;
@@ -54,5 +56,15 @@ public sealed class Fire : MonoBehaviour
     private void Die()
     {
         _objectPoolManager.FirePool.ReturnObjectToPool(this);
+    }
+
+    public void ApplyDelayBuff(float buffAmount)
+    {
+        _damageDelay *= buffAmount;
+    }
+
+    public void ApplyDamageBuff(float buffAmount)
+    {
+        _damage += (int)buffAmount;
     }
 }

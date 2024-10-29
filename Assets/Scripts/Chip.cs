@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public sealed class Chip : MonoBehaviour
+public sealed class Chip : MonoBehaviour, IDamageBuffable, ISpeedBuffable
 {
     [SerializeField] private float _lifeTime;
     [SerializeField] private float _chipSpeed;
@@ -11,8 +11,20 @@ public sealed class Chip : MonoBehaviour
     private ObjectPoolManager _objectPoolManager;
     private ChipTrigger _chipTrigger;
     private Rigidbody2D _rigidBody;
+    public bool buffApplied = false;
 
     public int Damage => _damage;
+
+    public void ApplyDamageBuff(float buffAmount)
+    {
+        _damage += (int)buffAmount;
+        Debug.Log("Chip damage increased to: " + _damage);
+    }
+
+    public void ApplySpeedBuff(float buffAmount)
+    {
+        _chipSpeed += buffAmount;
+    }
 
     private void Awake()
     {
