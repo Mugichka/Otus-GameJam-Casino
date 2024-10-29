@@ -2,10 +2,13 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public sealed class PlayerShot : MonoBehaviour
+public sealed class PlayerShot : MonoBehaviour,IDelayBuffable
 {
     [SerializeField] private ObjectPoolManager _objectPoolManager;
     [SerializeField] private float _shotDelay;
+
+    public bool buffApplied=false;
+
 
     private ChipUpgrade _currentUpgrade;
 
@@ -32,5 +35,10 @@ public sealed class PlayerShot : MonoBehaviour
     public void ApplyChipShootingUpgrade(ChipUpgrade newUpgrade)
     {
         _currentUpgrade = newUpgrade;
+    }
+
+    public void ApplyDelayBuff(float buffAmount)
+    {
+        _shotDelay *= buffAmount;
     }
 }

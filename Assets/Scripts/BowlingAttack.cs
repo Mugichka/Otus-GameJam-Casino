@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public sealed class BowlingAttack : MonoBehaviour
+public sealed class BowlingAttack : MonoBehaviour,IDelayBuffable
 {
     [SerializeField] private ObjectPoolManager _objectPoolManager;
     [SerializeField] private float _shotDelay;
@@ -22,5 +22,10 @@ public sealed class BowlingAttack : MonoBehaviour
     {
         BawlingBall bawlingBall = _objectPoolManager.BawlingBallPool.GetObjectFromPool();
         bawlingBall.Run(transform, _controller.LastDirection);
+    }
+
+    public void ApplyDelayBuff(float buffAmount)
+    {
+        _shotDelay *= buffAmount;
     }
 }

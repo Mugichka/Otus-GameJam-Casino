@@ -15,6 +15,11 @@ MonoBehaviour:
   artifactName: "\u0421\u043B\u043E\u043C\u0430\u043D\u043D\u0430\u044F \u0444\u0438\u0448\u043A\u0430"
   description: "\u0423 \u044D\u0442\u043E\u0439 \u0444\u0438\u0448\u043A\u0438 \u043E\u0447\u0435\u043D\u044C
     \u043E\u0441\u0442\u0440\u044B\u0435 \u043A\u0440\u0430\u044F, +\u0443\u0440\u043E\u043D)"
-  buffAmount: 5
+  speedBuffAmount: 1111
+  damageBuffAmount: 2222
+  delayBuffAmount: 3333
   duration: 0
-  targetSpellNames: []
+  artifactType:
+  - Damage
+  targetSpellNames:
+  - Chip

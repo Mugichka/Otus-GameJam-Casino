@@ -6,7 +6,7 @@ public class PlayerBuffs : MonoBehaviour
 {
     public static PlayerBuffs Instance;
 
-    private List<ArtifactSO> activeBuffs = new List<ArtifactSO>();
+    [SerializeField]private List<ArtifactSO> activeBuffs = new List<ArtifactSO>();
 
     private void Awake()
     {
@@ -41,6 +41,7 @@ public class PlayerBuffs : MonoBehaviour
         foreach (var artifact in activeBuffs)
         {
             artifact.ApplyBuffToSpells(player);
+            Debug.Log("Reapplied buff: " + artifact.name);
         }
     }
 }

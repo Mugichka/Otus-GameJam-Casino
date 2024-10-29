@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public sealed class BawlingBall : MonoBehaviour
+public sealed class BawlingBall : MonoBehaviour,IDamageBuffable,ISpeedBuffable
 {
     [SerializeField] private int _damage;
     [SerializeField] private float _lifeTime;
@@ -51,5 +51,15 @@ public sealed class BawlingBall : MonoBehaviour
     private void Die()
     {
         _objectPoolManager.BawlingBallPool.ReturnObjectToPool(this);
+    }
+
+    public void ApplyDamageBuff(float buffAmount)
+    {
+        _damage += (int)buffAmount;
+    }
+
+    public void ApplySpeedBuff(float buffAmount)
+    {
+        _ballSpeed += buffAmount;
     }
 }

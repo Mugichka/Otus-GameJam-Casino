@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-public class PillarOfFire : MonoBehaviour
+public class PillarOfFire : MonoBehaviour, IDelayBuffable
 {
     [SerializeField] private Animator _fireAnimator;
     [SerializeField] private ObjectPoolManager _objectPoolManager;
     [SerializeField] private float _fireCheckInterval;
     [SerializeField] private float _spawnRadius;
+
+    public bool buffApplied =false;
 
     private FireUpgrade _currentUpgrade;
 
@@ -45,5 +47,10 @@ public class PillarOfFire : MonoBehaviour
     public void ApplyChipShootingUpgrade(FireUpgrade newUpgrade)
     {
         _currentUpgrade = newUpgrade;
+    }
+
+    public void ApplyDelayBuff(float buffAmount)
+    {
+        _fireCheckInterval *= buffAmount;
     }
 }

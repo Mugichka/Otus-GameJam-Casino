@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FireSpell : MonoBehaviour, IBuffable
+public class FireSpell : MonoBehaviour, IDamageBuffable
 {
     private float damage = 10f;
 
@@ -8,5 +8,10 @@ public class FireSpell : MonoBehaviour, IBuffable
     {
         damage += buffAmount;
         Debug.Log("FireSpell damage increased to: " + damage);
+    }
+
+    public void ApplyDamageBuff(float buffAmount)
+    {
+        throw new System.NotImplementedException();
     }
 }
