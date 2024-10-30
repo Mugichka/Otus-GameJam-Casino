@@ -5,11 +5,13 @@ public sealed class FortuneWheel : MonoBehaviour
 {
     public event Action CardsFell;
     public event Action JackpotFell;
+    public event Action EnemyFell;
+    public event Action MoneyFell;
 
     [SerializeField] private SpinButton _spinButton;
-    [SerializeField] private float _minSpeedValue = 1000f;
-    [SerializeField] private float _maxSpeedValue = 2000f;
-    [SerializeField] private float _deceleration = 200f;
+    [SerializeField] private float _minSpeedValue = 500f;
+    [SerializeField] private float _maxSpeedValue = 1000f;
+    [SerializeField] private float _deceleration = 100f;
 
     private float _currentSpeed;
     private bool _isSpinning = false;
@@ -57,7 +59,7 @@ public sealed class FortuneWheel : MonoBehaviour
         if ((angle >= 22.5f && angle < 45f) || (angle >= 90 && angle < 112.5f) || (angle >= 157.5f && angle < 180f) ||
          (angle >= 225f && angle < 247.5f) || (angle >= 292.5f && angle < 315f))
         {
-            Debug.Log("Минус деньги");
+            MoneyFell?.Invoke();
         }
         else if ((angle >= 45f && angle < 67.5f) || (angle >= 112.5f && angle < 135f) || (angle >= 180 && angle < 202.5f) ||
                  (angle >= 247.5f && angle < 270f) || (angle >= 315f && angle < 337.5f))
@@ -67,7 +69,7 @@ public sealed class FortuneWheel : MonoBehaviour
         else if ((angle >= 67.5f && angle < 90f) || (angle >= 135f && angle < 157.5f) || (angle >= 202.5f && angle < 225f) ||
                   (angle >= 270 && angle < 292.5f) || (angle >= 337.5f && angle < 360f))
         {
-            Debug.Log("Призвать противников");
+            EnemyFell?.Invoke();
         }
         else if (angle >= 0 && angle < 22.5f)
         {

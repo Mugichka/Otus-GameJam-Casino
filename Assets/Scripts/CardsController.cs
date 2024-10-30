@@ -74,6 +74,12 @@ public sealed class CardsController : MonoBehaviour
             );
     }
 
+    private IEnumerator Start()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Run();
+    }
+
     private void OnEnable()
     {
         _fortuneWheel.CardsFell += Run;
