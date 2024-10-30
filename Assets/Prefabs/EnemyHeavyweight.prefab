@@ -135,7 +135,7 @@ MonoBehaviour:
   _hP: 1000
   _dropedTime: 1
   _controller: {fileID: 1980552741243262198}
-  _price: 100
+  _price: 5
 --- !u!114 &1980552741243262198
 MonoBehaviour:
   m_ObjectHideFlags: 0

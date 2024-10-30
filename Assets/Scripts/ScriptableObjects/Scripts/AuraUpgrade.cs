@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AuraUpgrade", menuName = "Upgrades/AuraUpgrade"),]
+[CreateAssetMenu(fileName = "AuraUpgrade", menuName = "Upgrades/AuraUpgrade")]
 public class AuraUpgrade : UpgradeData
 {
     [SerializeField] private float _auraRadius;
