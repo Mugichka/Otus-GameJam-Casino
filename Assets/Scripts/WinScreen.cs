@@ -39,15 +39,6 @@ public class WinScreen : MonoBehaviour
     }
 
     private float _rotationAmount = 360f;
-    private Color[] rainbowColors = new Color[]
-    {
-        new Color(1f, 0f, 0f, 0.3f),
-        new Color(1f, 1f, 0f, 0.3f),
-        new Color(0f, 1f, 0f, 0.3f),
-        new Color(0f, 1f, 1f, 0.3f),
-        new Color(0f, 0f, 1f, 0.3f),
-        new Color(1f, 0f, 1f, 0.3f)
-    };
 
     private void ShowWinScreen()
     {

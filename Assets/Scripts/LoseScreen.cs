@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class LoseScreen : MonoBehaviour
 {
+    [SerializeField] private Player _player;
     [SerializeField] private AudioSource _musicSource;
     [SerializeField] private AudioSource _loseSource;
     [SerializeField] private AudioClip _appearanceClip;
@@ -13,18 +15,44 @@ public class LoseScreen : MonoBehaviour
     [SerializeField] private RectTransform _homeTransform;
     [SerializeField] private RectTransform _retryTransform;
     [SerializeField] private RectTransform _cashBack;
+    [SerializeField] private Button _resetButton;
+    [SerializeField] private Button _homeButton;
     [SerializeField] private float _duration;
 
-    private void Update()
+    private bool _isLose = false;
+
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ShowLoseScreen();
-        }
+        //_player.PlayerDead += ShowLoseScreen;
+        _resetButton.onClick.AddListener(ReloadScene);
+        _homeButton.onClick.AddListener(LoadHome);
     }
 
-    private void ShowLoseScreen()
+    private void OnDisable()
     {
+        //_player.PlayerDead -= ShowLoseScreen;
+        _resetButton.onClick.RemoveListener(ReloadScene);
+        _homeButton.onClick.RemoveListener(LoadHome);
+    }
+
+    private void ReloadScene()
+    {
+        SceneManager.LoadScene("Maks");
+    }
+
+    private void LoadHome()
+    {
+        SceneManager.LoadScene("Marsel");
+    }
+
+    public void ShowLoseScreen()
+    {
+        if (_isLose == true)
+        {
+            return;
+        }
+
+        _isLose = true;
         _loseSource.PlayOneShot(_lossClip);
         _musicSource.DOFade(0f, _duration);
         _background.DOFade(0.5f, _duration);

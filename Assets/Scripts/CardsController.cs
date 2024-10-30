@@ -122,7 +122,7 @@ public sealed class CardsController : MonoBehaviour
 
         yield return new WaitForSeconds(_cardOpenedTime);
 
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
 
     private IEnumerator CloseCards()
@@ -152,7 +152,7 @@ public sealed class CardsController : MonoBehaviour
         StartCoroutine(CloseCards());
         _selectedCards[0].ApplyUpgrade(_player);
         _cardSelector.UpgradeSelected(_selectedCards[0]);
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
     }
 
     private void OnMiddleCardButtonClick()
@@ -160,7 +160,7 @@ public sealed class CardsController : MonoBehaviour
         StartCoroutine(CloseCards());
         _selectedCards[1].ApplyUpgrade(_player);
         _cardSelector.UpgradeSelected(_selectedCards[1]);
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
     }
 
     private void OnRightCardButtonClick()
@@ -168,6 +168,6 @@ public sealed class CardsController : MonoBehaviour
         StartCoroutine(CloseCards());
         _selectedCards[2].ApplyUpgrade(_player);
         _cardSelector.UpgradeSelected(_selectedCards[2]);
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
     }
 }

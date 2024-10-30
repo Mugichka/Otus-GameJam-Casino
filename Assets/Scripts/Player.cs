@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
+    public event Action PlayerDead;
     public event Action<int> UpdateMoney;
     public float damageCooldown = 0.5f;
 
@@ -11,6 +12,19 @@ public class Player : MonoBehaviour
     private Dictionary<Enemy, float> enemyDamageTimers = new Dictionary<Enemy, float>();
 
     [SerializeField] private int _money;
+
+    public int Money 
+    {
+        get
+        {
+            return _money;
+        } 
+        set
+        {
+            _money = value;
+            UpdateMoney.Invoke(_money);
+        }
+    }
     //[SerializeField] private PlayerTrigger _playerTrigger;
 
     private void Start()
@@ -36,6 +50,12 @@ public class Player : MonoBehaviour
     {
         _money -= damage;
         UpdateMoney.Invoke(_money);
+     
+        if (_money <= 0)
+        {
+            gameObject.SetActive(false);
+            PlayerDead?.Invoke();
+        }
     }
 
      private void OnCollisionEnter2D(Collision2D collision)
