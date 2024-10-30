@@ -1,19 +1,23 @@
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using System;
 
 public class JackpotController : MonoBehaviour
 {
+    public event Action _AllJackpotsRecieved;
+
     [SerializeField] private RectTransform _jackpotTransform;
     [SerializeField] private FortuneWheel _fortuneWheel;
     [SerializeField] private Image[] _blockedJackpots;
     [SerializeField] private float _duration;
-    [SerializeField] private float _rotationAmount = 360f;
     [SerializeField] private int _numberOfRotations = 2;
     [SerializeField] private Sprite _jackpotSprite;
+    [SerializeField] private AudioSource _musicSource;
     [SerializeField] private AudioSource _jackpotSource;
     [SerializeField] private AudioClip _jackpotClip;
 
+    private float _rotationAmount = 360f;
     private int _jackpotCount = 0;
     private Vector2 _targetScaleJackpot = new Vector2(0.22f, 0.22f);
 
@@ -40,6 +44,7 @@ public class JackpotController : MonoBehaviour
         Vector3 pivotWorldPosition = _blockedJackpots[_jackpotCount].rectTransform.TransformPoint(_blockedJackpots[_jackpotCount].rectTransform.pivot);
         Vector2 targetLocalPosition = _jackpotTransform.parent.InverseTransformPoint(pivotWorldPosition);
 
+        _musicSource.DOFade(0.1f, _duration);
         _jackpotSource.PlayOneShot(_jackpotClip);
         _jackpotTransform.DOScale(Vector3.one, _duration).SetEase(Ease.OutBack);
         _jackpotTransform.DORotate(Vector3.forward * _rotationAmount * _numberOfRotations, _duration, RotateMode.FastBeyond360)
@@ -50,6 +55,7 @@ public class JackpotController : MonoBehaviour
                   _jackpotTransform.DORotate(Vector3.back * _rotationAmount * _numberOfRotations, _duration, RotateMode.FastBeyond360)
                         .OnComplete(() =>
                         {
+                            _musicSource.DOFade(0.5f, _duration);
                             _blockedJackpots[_jackpotCount].sprite = _jackpotSprite;
                             _jackpotTransform.anchoredPosition = Vector2.zero;
                             _jackpotTransform.localScale = Vector2.zero;
@@ -57,7 +63,7 @@ public class JackpotController : MonoBehaviour
 
                             if (_jackpotCount >= 3)
                             {
-                                Debug.Log("Показать победное окно");
+                                _AllJackpotsRecieved?.Invoke();
                             }
                         });
               });
