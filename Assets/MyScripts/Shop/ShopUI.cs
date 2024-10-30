@@ -23,18 +23,19 @@ public class ShopUI : MonoBehaviour
         rollButton.onClick.AddListener(RollForArtifact);
         resultText.text = "Press Roll to Get an Artifact!";
         moneyText.text = $"Money: {moneyCounter._totalMoney}";
+        DisplayArtifacts(); 
     }
 
     private void RollForArtifact()
     {
 
-        if (moneyCounter._totalMoney < 100)
+        if (moneyCounter._totalMoney < 5)
         {
             resultText.text = "Не хватает денег на спин :(";
         }
         else
         {
-            moneyCounter._totalMoney -= 100;
+            moneyCounter._totalMoney -= 5;
             moneyText.text = $"Money: {moneyCounter._totalMoney}";
             // Pick a random artifact
             ArtifactSO chosenArtifact = availableArtifacts[Random.Range(0, availableArtifacts.Length)];
@@ -61,7 +62,7 @@ public class ShopUI : MonoBehaviour
         }
 
         // Create a UI element for each artifact in the player's collection
-        foreach (ArtifactSO artifact in playerArtifacts)
+        foreach (ArtifactSO artifact in PlayerBuffs.Instance.activeBuffs)
         {
             GameObject artifactDisplay = Instantiate(artifactPrefab, artifactContentParent);
             TMP_Text artifactText = artifactDisplay.GetComponent<TMP_Text>();

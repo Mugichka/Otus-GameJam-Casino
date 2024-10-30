@@ -132,11 +132,11 @@ MonoBehaviour:
   _moneyCounter: {fileID: 11400000, guid: e25212c5bd99ea746bc5151915b76d3b, type: 2}
   _enemyTrigger: {fileID: -1858963848475982968}
   _animator: {fileID: 2678906131191163681}
-  _damage: 50
-  _hP: 1000
+  _damage: 10
+  _hP: 500
   _dropedTime: 1
   _controller: {fileID: 1980552741243262198}
-  _price: 5
+  _price: 50
 --- !u!114 &1980552741243262198
 MonoBehaviour:
   m_ObjectHideFlags: 0

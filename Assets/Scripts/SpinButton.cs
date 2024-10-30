@@ -7,7 +7,7 @@ public sealed class SpinButton : MonoBehaviour
     public event Action spinAllowed;
 
     [SerializeField] private Player _player;
-    [SerializeField] private int _priceToSpin = 200;
+    [SerializeField] private int _priceToSpin = 100;
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private AudioSource _source;
     [SerializeField] private AudioClip _spinClip;
@@ -31,7 +31,7 @@ public sealed class SpinButton : MonoBehaviour
 
     private void DoSpin()
     {
-        if (_player.Money >= _priceToSpin)
+        if (_player.Money >= _priceToSpin+10)
         {
             _source.PlayOneShot(_spinClip);
             spinAllowed?.Invoke();

@@ -6,7 +6,7 @@ public class PlayerBuffs : MonoBehaviour
 {
     public static PlayerBuffs Instance;
 
-    [SerializeField]private List<ArtifactSO> activeBuffs = new List<ArtifactSO>();
+    [SerializeField]public List<ArtifactSO> activeBuffs = new List<ArtifactSO>();
 
     private void Awake()
     {
