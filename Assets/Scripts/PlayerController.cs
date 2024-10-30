@@ -11,6 +11,8 @@ public sealed class PlayerController : MonoBehaviour
 
     public Vector2 LastDirection => _lastDirection;
 
+    
+
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
@@ -30,4 +32,5 @@ public sealed class PlayerController : MonoBehaviour
     {
         _rigidBody.velocity = _direction * _speed;
     }
+
 }

@@ -616,7 +616,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Roll
+  m_text: Roll(5 chips)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1519,6 +1519,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05915872cab68534da1d44fd5f5e9004, type: 2}
   - {fileID: 11400000, guid: 00fdd24b6c8a34c488031bbf3abf0f78, type: 2}
   - {fileID: 11400000, guid: a70bb73a45aa750458a03c3ad0a1b183, type: 2}
+  moneyCounter: {fileID: 11400000, guid: e25212c5bd99ea746bc5151915b76d3b, type: 2}
+  moneyText: {fileID: 1010282517}
   artifactPrefab: {fileID: 3228781906491399438, guid: 534260e3c51fda9408290498b2014289, type: 3}
   artifactContentParent: {fileID: 1969919344}
 --- !u!4 &781101256
@@ -4340,7 +4342,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 124.390015, y: 61.549988}
+  m_AnchoredPosition: {x: 124.38989, y: 61.55005}
   m_SizeDelta: {x: 248.76599, y: 123.09601}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2070522972
