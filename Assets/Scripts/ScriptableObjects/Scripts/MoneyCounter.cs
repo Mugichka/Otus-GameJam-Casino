@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "totalMoney", menuName = "money")]
 public sealed class MoneyCounter : ScriptableObject
 {
-    [SerializeField] private float _totalMoney;
+    [SerializeField] public float _totalMoney;
 
     public float TotalMoney => _totalMoney;
 
