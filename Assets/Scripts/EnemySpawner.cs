@@ -14,9 +14,10 @@ public sealed class EnemySpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(_spawnDelay);
-            SpawnNormalEnemy();
-            SpawnLightweightEnemy();
-            SpawnHeavyweightEnemy();
+            ProgressiveSpawn();
+            //SpawnNormalEnemy();
+            //SpawnLightweightEnemy();
+            //SpawnHeavyweightEnemy();
         }
     }
 
@@ -76,5 +77,24 @@ public sealed class EnemySpawner : MonoBehaviour
         Vector3 spawnPosition = GetRandomSpawnPosition();
         Enemy enemyHeavyweight = _objectPoolManager.EnemyHeavyweightPool.GetObjectFromPool();
         enemyHeavyweight.transform.position = spawnPosition;
+    }
+
+    public void WheelSpawn()
+    {
+        ProgressiveSpawn();
+    }
+
+    private void ProgressiveSpawn()
+    {
+        var f=Time.timeSinceLevelLoad;
+        Debug.Log(f/60);
+        for (int i = 0; i < f/60; i++)
+        {
+            SpawnNormalEnemy();
+            SpawnLightweightEnemy();
+            SpawnHeavyweightEnemy();
+            
+        }
+        
     }
 }

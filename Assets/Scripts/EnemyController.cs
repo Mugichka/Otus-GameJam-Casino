@@ -5,7 +5,7 @@ public sealed class EnemyController : MonoBehaviour
 {
     public bool IsWalking = true;
 
-    [SerializeField] private float _speed;
+    [SerializeField] public float _speed;
 
     private PlayerController _target;
     private Rigidbody2D _rigidBody;
