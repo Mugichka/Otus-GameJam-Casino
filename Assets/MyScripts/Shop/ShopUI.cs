@@ -10,6 +10,8 @@ public class ShopUI : MonoBehaviour
     public ArtifactSO[] availableArtifacts;
     public MoneyCounter moneyCounter;
     public TMP_Text moneyText;
+    //AudioClip rollSound;
+    AudioSource audioSource;
     //public GameObject player;
 
     // Artifact Display UI
@@ -20,6 +22,7 @@ public class ShopUI : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         rollButton.onClick.AddListener(RollForArtifact);
         resultText.text = "Press Roll to Get an Artifact!";
         moneyText.text = $"Money: {moneyCounter._totalMoney}";
@@ -35,6 +38,7 @@ public class ShopUI : MonoBehaviour
         }
         else
         {
+            audioSource.Play();
             moneyCounter._totalMoney -= 5;
             moneyText.text = $"Money: {moneyCounter._totalMoney}";
             // Pick a random artifact
