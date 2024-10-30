@@ -4,6 +4,7 @@ using System;
 public sealed class FortuneWheel : MonoBehaviour
 {
     public event Action CardsFell;
+    public event Action JackpotFell;
 
     [SerializeField] private SpinButton _spinButton;
     [SerializeField] private float _minSpeedValue = 1000f;
@@ -70,7 +71,7 @@ public sealed class FortuneWheel : MonoBehaviour
         }
         else if (angle >= 0 && angle < 22.5f)
         {
-            Debug.Log("Jackpot!");
+            JackpotFell?.Invoke();
         }
     }
 }
