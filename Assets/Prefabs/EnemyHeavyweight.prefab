@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527e366c5b0cfb845aa6bf88b466cee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moneyCounter: {fileID: 11400000, guid: e25212c5bd99ea746bc5151915b76d3b, type: 2}
   _enemyTrigger: {fileID: -1858963848475982968}
   _animator: {fileID: 2678906131191163681}
   _damage: 50
