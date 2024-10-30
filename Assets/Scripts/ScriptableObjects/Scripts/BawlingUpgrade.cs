@@ -17,6 +17,18 @@ public class BawlingUpgrade : UpgradeData
                 shooter.enabled = true;
             }
 
+            foreach (var BawlingBall in FindObjectsOfType<BawlingBall>(true))
+                {
+                    if (!BawlingBall.buffApplied)
+                   PlayerBuffs.Instance.ReapplyBuffsToAllSpells(BawlingBall.gameObject);
+                    BawlingBall.buffApplied = true;
+                }
+                if(!shooter.buffApplied)
+                {
+                    PlayerBuffs.Instance.ReapplyBuffsToAllSpells(shooter.gameObject);
+                    shooter.buffApplied = true;
+                }
+
             shooter.ApplyChipShootingUpgrade(this);
         }
     }

@@ -6,6 +6,7 @@ public sealed class BowlingAttack : MonoBehaviour, IDelayBuffable
     [SerializeField] private ObjectPoolManager _objectPoolManager;
     [SerializeField] private float _shotDelay;
     [SerializeField] private PlayerController _controller;
+    public bool buffApplied=false;
 
     private BawlingUpgrade _currentUpgrade;
 

@@ -10,6 +10,8 @@ public sealed class BawlingBall : MonoBehaviour,IDamageBuffable,ISpeedBuffable
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private BawlingBallTrigger _bawlingBallTrigger;
 
+    public bool buffApplied=false;
+
     private ObjectPoolManager _objectPoolManager;
 
     private void Awake()
