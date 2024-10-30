@@ -8,7 +8,7 @@ public class Menu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.LoadScene("Maks");
+    
     }
 
     // Update is called once per frame
