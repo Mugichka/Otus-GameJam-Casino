@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   artifactName: "\u0410\u0431\u0438\u0431\u0430\u0441"
   description: "\u0422\u0435\u043F\u0435\u0440\u044C \u0442\u044B \u0431\u044B\u0441\u0442\u0440\u0435\u0435"
-  speedBuffAmount: 0
+  speedBuffAmount: 5
   damageBuffAmount: 0
   delayBuffAmount: 0
   duration: 0
   artifactType:
-  - 
-  - 
+  - Speed
   targetSpellNames:
   - PlayerController

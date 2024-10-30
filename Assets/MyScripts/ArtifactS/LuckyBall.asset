@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d841fbedb8df64429a0c6159332c6ea, type: 3}
   m_Name: LuckyBall
   m_EditorClassIdentifier: 
-  artifactName: 
-  description: 
-  speedBuffAmount: 0
-  damageBuffAmount: 0
-  delayBuffAmount: 0
+  artifactName: "\u0412\u0430\u0441\u044F"
+  description: "\u041B\u044E\u0431\u0438\u043C\u044B\u0439 \u0448\u0430\u0440 \u0434\u043B\u044F
+    \u0431\u043E\u0443\u043B\u0438\u043D\u0433\u0430"
+  speedBuffAmount: 2
+  damageBuffAmount: 10
+  delayBuffAmount: 0.7
   duration: 0
-  artifactType: []
-  targetSpellNames: []
+  artifactType:
+  - Damage
+  - Delay
+  targetSpellNames:
+  - BowlingAttack
+  - BawlingBall
