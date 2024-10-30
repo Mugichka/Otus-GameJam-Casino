@@ -6,6 +6,7 @@ public sealed class Enemy : MonoBehaviour
 {
     //public event Action<float> EnemyDead;
 
+    [SerializeField] private MoneyCounter _moneyCounter;
     [SerializeField] private EnemyTrigger _enemyTrigger;
     [SerializeField] private Animator _animator;
     [SerializeField] private int _damage;
@@ -53,6 +54,7 @@ public sealed class Enemy : MonoBehaviour
         {
             _isDead = true;
             _player.Money += _price;
+            _moneyCounter.AddMoney(_price);
             //EnemyDead(_price);
             Die();
         }

@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     public event Action PlayerDead;
     public event Action<int> UpdateMoney;
     public float damageCooldown = 0.5f;
-    [SerializeField] private MoneyCounter _moneyCounter;
 
     // Dictionary to track last damage time for each enemy
     private Dictionary<Enemy, float> enemyDamageTimers = new Dictionary<Enemy, float>();
@@ -24,7 +23,6 @@ public class Player : MonoBehaviour
         {
             _money = value;
             UpdateMoney.Invoke(_money);
-            _moneyCounter.AddMoney(value);
         }
     }
     //[SerializeField] private PlayerTrigger _playerTrigger;

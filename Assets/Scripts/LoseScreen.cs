@@ -2,10 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LoseScreen : MonoBehaviour
 {
     [SerializeField] private Player _player;
+    [SerializeField] private MoneyCounter _moneyCounter;
     [SerializeField] private AudioSource _musicSource;
     [SerializeField] private AudioSource _loseSource;
     [SerializeField] private AudioClip _appearanceClip;
@@ -17,6 +19,7 @@ public class LoseScreen : MonoBehaviour
     [SerializeField] private RectTransform _cashBack;
     [SerializeField] private Button _resetButton;
     [SerializeField] private Button _homeButton;
+    [SerializeField] private TextMeshProUGUI _textCashback;
     [SerializeField] private float _duration;
 
     private bool _isLose = false;
@@ -53,6 +56,7 @@ public class LoseScreen : MonoBehaviour
         }
 
         _isLose = true;
+        _textCashback.text = $"{_moneyCounter._totalMoney}";
         _loseSource.PlayOneShot(_lossClip);
         _musicSource.DOFade(0f, _duration);
         _background.DOFade(0.5f, _duration);
