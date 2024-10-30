@@ -6,10 +6,13 @@ public sealed class FortuneWheel : MonoBehaviour
     public event Action CardsFell;
 
     [SerializeField] private SpinButton _spinButton;
-    [SerializeField] private float startSpeed = 1000f;
-    [SerializeField] private float deceleration = 200f;
-    [SerializeField] private float currentSpeed;
-    [SerializeField] private bool isSpinning = false;
+    [SerializeField] private float _minSpeedValue = 1000f;
+    [SerializeField] private float _maxSpeedValue = 2000f;
+    [SerializeField] private float _deceleration = 200f;
+
+    private float _currentSpeed;
+    private bool _isSpinning = false;
+    private readonly float _wheelOffset = 11.5f;
 
     private void OnEnable()
     {
@@ -23,15 +26,15 @@ public sealed class FortuneWheel : MonoBehaviour
 
     void Update()
     {
-        if (isSpinning)
+        if (_isSpinning)
         {
-            transform.Rotate(0, 0, currentSpeed * Time.deltaTime);
-            currentSpeed -= deceleration * Time.deltaTime;
+            transform.Rotate(0, 0, _currentSpeed * Time.deltaTime);
+            _currentSpeed -= _deceleration * Time.deltaTime;
 
-            if (currentSpeed <= 0)
+            if (_currentSpeed <= 0)
             {
-                currentSpeed = 0;
-                isSpinning = false;
+                _currentSpeed = 0;
+                _isSpinning = false;
                 DetermineResult();
             }
         }
@@ -39,17 +42,35 @@ public sealed class FortuneWheel : MonoBehaviour
 
     public void StartSpin()
     {
-        if (!isSpinning)
+        if (!_isSpinning)
         {
-            currentSpeed = startSpeed;
-            isSpinning = true;
+            _currentSpeed = UnityEngine.Random.Range(_minSpeedValue, _maxSpeedValue);
+            _isSpinning = true;
         }
     }
 
     private void DetermineResult()
     {
-        float currentAngle = transform.eulerAngles.z;
+        float angle = (transform.eulerAngles.z + _wheelOffset) % 360;
 
-        CardsFell?.Invoke();
+        if ((angle >= 22.5f && angle < 45f) || (angle >= 90 && angle < 112.5f) || (angle >= 157.5f && angle < 180f) ||
+         (angle >= 225f && angle < 247.5f) || (angle >= 292.5f && angle < 315f))
+        {
+            Debug.Log("Минус деньги");
+        }
+        else if ((angle >= 45f && angle < 67.5f) || (angle >= 112.5f && angle < 135f) || (angle >= 180 && angle < 202.5f) ||
+                 (angle >= 247.5f && angle < 270f) || (angle >= 315f && angle < 337.5f))
+        {
+            CardsFell?.Invoke();
+        }
+        else if ((angle >= 67.5f && angle < 90f) || (angle >= 135f && angle < 157.5f) || (angle >= 202.5f && angle < 225f) ||
+                  (angle >= 270 && angle < 292.5f) || (angle >= 337.5f && angle < 360f))
+        {
+            Debug.Log("Призвать противников");
+        }
+        else if (angle >= 0 && angle < 22.5f)
+        {
+            Debug.Log("Jackpot!");
+        }
     }
 }
