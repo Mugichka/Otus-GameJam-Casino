@@ -14,8 +14,6 @@ public sealed class Enemy : MonoBehaviour
     [SerializeField] private float _dropedTime;
     [SerializeField] private EnemyController _controller;
     [SerializeField] private int _price;
-    [SerializeField] private AudioSource _source;
-    [SerializeField] private AudioClip _audioClip;
 
     private Player _player;
     private SpriteRenderer _spriteRenderer;
@@ -62,7 +60,6 @@ public sealed class Enemy : MonoBehaviour
         }
         else
         {
-            _source.PlayOneShot(_audioClip);
             _currentHP -= damage;
             _animator.SetTrigger("TakeDamage");
         }
