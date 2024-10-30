@@ -20,17 +20,16 @@ public class AuraUpgrade : UpgradeData
             if (shooter.enabled == false)
             {
                 shooter.enabled = true;
-
             }
 
             shooter.ApplyChipShootingUpgrade(this);
         
-            // Apply any active buffs to all spells, including newly enabled ones
-            //if(!FindObjectOfType<DamageAura>(true).buffApplied)
-            //{
-            //    PlayerBuffs.Instance.ReapplyBuffsToAllSpells(shooter.gameObject);
-            //}
-            //FindObjectOfType<DamageAura>(true).buffApplied = true;
+             //Apply any active buffs to all spells, including newly enabled ones
+            if(!FindObjectOfType<DamageAura>(true).buffApplied)
+            {
+                PlayerBuffs.Instance.ReapplyBuffsToAllSpells(shooter.gameObject);
+            }
+            FindObjectOfType<DamageAura>(true).buffApplied = true;
         }
     }
 }
