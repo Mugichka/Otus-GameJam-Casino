@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeBuffs:
-  - {fileID: 11400000, guid: c6060fc158cf3f34a8886316f8324cf8, type: 2}
+  - {fileID: 11400000, guid: 7eab2932c4ed1654f8623ca9d2f4b499, type: 2}
 --- !u!4 &360351804
 Transform:
   m_ObjectHideFlags: 0
