@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     public event Action PlayerDead;
     public event Action<int> UpdateMoney;
     public float damageCooldown = 0.5f;
+    [SerializeField] private AudioSource _source;
+    [SerializeField] private AudioClip _audioClip;
 
     // Dictionary to track last damage time for each enemy
     private Dictionary<Enemy, float> enemyDamageTimers = new Dictionary<Enemy, float>();
@@ -50,7 +52,7 @@ public class Player : MonoBehaviour
     {
         _money -= damage;
         UpdateMoney.Invoke(_money);
-     
+        _source.PlayOneShot(_audioClip);
         if (_money <= 0)
         {
             gameObject.SetActive(false);

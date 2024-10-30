@@ -7,6 +7,8 @@ public class PillarOfFire : MonoBehaviour, IDelayBuffable
     [SerializeField] private ObjectPoolManager _objectPoolManager;
     [SerializeField] private float _fireCheckInterval;
     [SerializeField] private float _spawnRadius;
+    [SerializeField] private AudioSource _source;
+    [SerializeField] private AudioClip _audioClip;
 
     public bool buffApplied =false;
 
@@ -25,6 +27,7 @@ public class PillarOfFire : MonoBehaviour, IDelayBuffable
             {
                 Vector2 spawnPoint = GetRandomPointInsideCircle();
                 Fire fire = _objectPoolManager.FirePool.GetObjectFromPool();
+                _source.PlayOneShot(_audioClip);
                 StartCoroutine(fire.Run(spawnPoint));
             }
 

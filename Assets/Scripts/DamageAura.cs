@@ -7,6 +7,8 @@ public class DamageAura : MonoBehaviour,IDamageBuffable,IDelayBuffable
     [SerializeField] private Transform _smokeTransform;
     [SerializeField] private int _auraDamage;
     [SerializeField] private float _auraCheckInterval;
+    [SerializeField] private AudioSource _source;
+    [SerializeField] private AudioClip _audioClip;
 
     public bool buffApplied = false;
 
@@ -23,7 +25,8 @@ public class DamageAura : MonoBehaviour,IDamageBuffable,IDelayBuffable
     {
         while (true)
         {
-            _smokeAnimator.SetTrigger("DoSmoke"); 
+            _smokeAnimator.SetTrigger("DoSmoke");
+            _source.PlayOneShot(_audioClip);
             yield return new WaitForSeconds(_damageDelay); 
             ApplyDamageToNearby();
 
