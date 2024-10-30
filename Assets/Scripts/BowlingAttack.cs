@@ -7,6 +7,8 @@ public sealed class BowlingAttack : MonoBehaviour, IDelayBuffable
     [SerializeField] private float _shotDelay;
     [SerializeField] private PlayerController _controller;
     public bool buffApplied=false;
+    [SerializeField] private AudioSource _source;
+    [SerializeField] private AudioClip _audioClip;
 
     private BawlingUpgrade _currentUpgrade;
 
@@ -32,6 +34,7 @@ public sealed class BowlingAttack : MonoBehaviour, IDelayBuffable
 
     private void Shot()
     {
+        _source.PlayOneShot(_audioClip);
         for (int i = 0; i < _currentUpgrade.BallCount; i++)
         {
             Vector2 direction = CalculateDirection(_controller.LastDirection, i, _currentUpgrade.BallCount);

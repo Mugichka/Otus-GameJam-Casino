@@ -6,6 +6,8 @@ public sealed class PlayerShot : MonoBehaviour,IDelayBuffable
 {
     [SerializeField] private ObjectPoolManager _objectPoolManager;
     [SerializeField] private float _shotDelay;
+    [SerializeField] private AudioSource _source;
+    [SerializeField] private AudioClip _audioClip;
 
     public bool buffApplied=false;
 
@@ -23,7 +25,7 @@ public sealed class PlayerShot : MonoBehaviour,IDelayBuffable
 
     private void Shot()
     {
-
+        _source.PlayOneShot(_audioClip);
         for (int i = 0; i < _currentUpgrade.ChipCount; i++)
         {
             float angleOffset = (i - (_currentUpgrade.ChipCount - 1) / 2f) * _currentUpgrade.AngleBetweenChips;
