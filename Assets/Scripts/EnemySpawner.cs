@@ -5,9 +5,20 @@ public sealed class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private ObjectPoolManager _objectPoolManager;
     [SerializeField] private float _spawnDelay;
+    [SerializeField] private FortuneWheel _fortuneWheel;
 
     private Vector3 _screenBottomLeft;
     private Vector3 _screenTopRight;
+
+    private void OnEnable()
+    {
+        _fortuneWheel.EnemyFell += WheelSpawn;
+    }
+
+    private void OnDisable()
+    {
+        _fortuneWheel.EnemyFell -= WheelSpawn;
+    }
 
     private IEnumerator Start()
     {
@@ -81,13 +92,23 @@ public sealed class EnemySpawner : MonoBehaviour
 
     public void WheelSpawn()
     {
-        ProgressiveSpawn();
+        for (int i = 0; i < 10; i++)
+        {
+            SpawnEnemies();
+        }
+    }
+
+    private void SpawnEnemies()
+    {
+        SpawnNormalEnemy();
+        SpawnLightweightEnemy();
+        SpawnHeavyweightEnemy();
     }
 
     private void ProgressiveSpawn()
     {
         var f=Time.timeSinceLevelLoad;
-        Debug.Log(f/60);
+        //Debug.Log(f/60);
         for (int i = 0; i < f/60; i++)
         {
             SpawnNormalEnemy();

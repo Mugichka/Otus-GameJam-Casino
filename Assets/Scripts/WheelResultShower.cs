@@ -22,12 +22,12 @@ public sealed class WheelResultShower : MonoBehaviour
 
     private void ShowMoneyText()
     {
-        StartCoroutine(ShowWheelResult("Вы потеряли все свои деньги! Вот досада!", Color.yellow));
+        StartCoroutine(ShowWheelResult("Вы потеряли половину своих денег! Вот досада!", Color.yellow));
     }
 
     private void ShowEnemyText()
     {
-        StartCoroutine(ShowWheelResult("Враги наступают! Приготовьтесь, милорд!", Color.red));
+        StartCoroutine(ShowWheelResult("Враги наступают! Готовьте щит, милорд!", Color.red));
     }
 
     private IEnumerator ShowWheelResult(string text, Color color)
