@@ -87,5 +87,13 @@ public sealed class Enemy : MonoBehaviour
         _currentHP = _hP;
         _isDead = false;
         _spriteRenderer.color = _originalColor;
+        BuffEnemy();
+    }
+
+    private void BuffEnemy()
+    {
+        _hP+= 5;
+        _damage+=5;
+        _controller._speed+= 1;
     }
 }
