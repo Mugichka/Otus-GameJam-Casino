@@ -21,6 +21,11 @@ public class PlayerBuffs : MonoBehaviour
         }
     }
 
+    public void OnlyAddBuff(ArtifactSO artifact)
+    {
+        activeBuffs.Add(artifact);
+    }
+
     public void AddBuff(ArtifactSO artifact, GameObject player)
     {
         activeBuffs.Add(artifact);
