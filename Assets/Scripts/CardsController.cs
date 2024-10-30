@@ -7,8 +7,6 @@ using System.Collections.Generic;
 
 public sealed class CardsController : MonoBehaviour
 {
-    //public event Action CardSelected;
-
     [Header("LeftCard")]
     [SerializeField] private CanvasGroup _groupFrontLeftCard;
     [SerializeField] private CanvasGroup _groupBackLeftCard;
@@ -43,10 +41,12 @@ public sealed class CardsController : MonoBehaviour
     [SerializeField] private float _closeCardsDuration;
     [SerializeField] private FortuneWheel _fortuneWheel;
     [SerializeField] private CardSelector _cardSelector;
+    [SerializeField] private ObjectPoolManager _objectPoolManager;
 
     private List<UpgradeData> _selectedCards;
     private Card[] _cards;
     private readonly int _countOfCards = 3;
+    private readonly float _cardOpenedTime = 0.5f;
 
     private void Awake()
     {
@@ -113,6 +113,10 @@ public sealed class CardsController : MonoBehaviour
             _cards[i].Flip();
             yield return new WaitForSeconds(_fromFlipToFlipDuration);
         }
+
+        yield return new WaitForSeconds(_cardOpenedTime);
+
+        Time.timeScale = 0f;
     }
 
     private IEnumerator CloseCards()
@@ -142,7 +146,7 @@ public sealed class CardsController : MonoBehaviour
         StartCoroutine(CloseCards());
         _selectedCards[0].ApplyUpgrade(_player);
         _cardSelector.UpgradeSelected(_selectedCards[0]);
-        //CardSelected?.Invoke();
+        Time.timeScale = 1f;
     }
 
     private void OnMiddleCardButtonClick()
@@ -150,7 +154,7 @@ public sealed class CardsController : MonoBehaviour
         StartCoroutine(CloseCards());
         _selectedCards[1].ApplyUpgrade(_player);
         _cardSelector.UpgradeSelected(_selectedCards[1]);
-        //CardSelected?.Invoke();
+        Time.timeScale = 1f;
     }
 
     private void OnRightCardButtonClick()
@@ -158,6 +162,6 @@ public sealed class CardsController : MonoBehaviour
         StartCoroutine(CloseCards());
         _selectedCards[2].ApplyUpgrade(_player);
         _cardSelector.UpgradeSelected(_selectedCards[2]);
-        //CardSelected?.Invoke();
+        Time.timeScale = 1f;
     }
 }
