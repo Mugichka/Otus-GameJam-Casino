@@ -14,7 +14,9 @@ public sealed class EnemySpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(_spawnDelay);
-            SpawnEnemy();
+            SpawnNormalEnemy();
+            SpawnLightweightEnemy();
+            SpawnHeavyweightEnemy();
         }
     }
 
@@ -55,10 +57,24 @@ public sealed class EnemySpawner : MonoBehaviour
         return new Vector3(xPos, yPos, 0);
     }
 
-    private void SpawnEnemy()
+    private void SpawnNormalEnemy()
     {
         Vector3 spawnPosition = GetRandomSpawnPosition();
-        Enemy enemy = _objectPoolManager.EnemyPool.GetObjectFromPool();
-        enemy.transform.position = spawnPosition;
+        Enemy enemyNormal = _objectPoolManager.EnemyNormalPool.GetObjectFromPool();
+        enemyNormal.transform.position = spawnPosition;
+    }
+
+    private void SpawnLightweightEnemy()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        Enemy enemyLightweight = _objectPoolManager.EnemyLightweightPool.GetObjectFromPool();
+        enemyLightweight.transform.position = spawnPosition;
+    }
+
+    private void SpawnHeavyweightEnemy()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        Enemy enemyHeavyweight = _objectPoolManager.EnemyHeavyweightPool.GetObjectFromPool();
+        enemyHeavyweight.transform.position = spawnPosition;
     }
 }

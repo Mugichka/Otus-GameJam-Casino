@@ -70,7 +70,7 @@ public sealed class Enemy : MonoBehaviour
 
     private void Die()
     {
-        _objectPoolManager.EnemyPool.ReturnObjectToPool(this);
+        _objectPoolManager.EnemyNormalPool.ReturnObjectToPool(this);
         UpdateEnemy();
     }
 

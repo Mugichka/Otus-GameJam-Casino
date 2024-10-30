@@ -1263,7 +1263,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5305,6 +5305,7 @@ MonoBehaviour:
   _closeCardsDuration: 1
   _fortuneWheel: {fileID: 899687904}
   _cardSelector: {fileID: 1606259656}
+  _objectPoolManager: {fileID: 0}
 --- !u!114 &1606259656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6354,8 +6355,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _chipPrefab: {fileID: 8442607051430623645, guid: 794a2bf90565f2a42b1e2937602f4dab, type: 3}
   _chipPoolSize: 50
-  _enemyPrefab: {fileID: -2438303093909718518, guid: 83f199d9dc576d142b31cf2bc8dcb08c, type: 3}
-  _enemyPoolSize: 50
+  _enemyNormalPrefab: {fileID: -2438303093909718518, guid: 83f199d9dc576d142b31cf2bc8dcb08c, type: 3}
+  _enemyNormalPoolSize: 1000
+  _EnemyLightweightPrefab: {fileID: -2438303093909718518, guid: 227722c34b495f149beb54f6724f2b47, type: 3}
+  _EnemyLightweightPoolSize: 1000
+  _enemyHeavyweightPrefab: {fileID: -2438303093909718518, guid: 417a9472ccbce47458908f87101ab692, type: 3}
+  _enemyHeavyweightPoolSize: 1000
   _firePrefab: {fileID: -1554232305359118726, guid: b64fc996593eb234a887b2e024ae8a76, type: 3}
   _firePoolSize: 10
   _bawlingBallPrefab: {fileID: 2250553144553408662, guid: f633d33d135a05546bd103e51bfa52df, type: 3}
